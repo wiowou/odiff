@@ -1,9 +1,10 @@
 import * as R from 'ramda';
 
+const ignore = [0, 0];
 //predicates
-const predAdded = ([prime, obj]) => (prime ? [0, 0] : [prime, obj]);
-const predRemoved = ([prime, obj]) => (obj ? [0, 0] : [prime, obj]);
-const predUpdated = ([prime, obj]) => (!obj || !prime ? [0, 0] : [prime, obj]);
+const predAdded = ([prime, obj]) => (prime ? ignore : [prime, obj]);
+const predRemoved = ([prime, obj]) => (obj ? ignore : [prime, obj]);
+const predUpdated = ([prime, obj]) => (!obj || !prime ? ignore : [prime, obj]);
 const predDiff = ([prime, obj]) => [prime, obj];
 
 const _diff = (predicate): ((a: [any, any]) => object) => {
