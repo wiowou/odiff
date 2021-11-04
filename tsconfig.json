@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "lib": ["es2017", "es2019.array"],
+    "declaration": true,
+    "declarationMap": true,
+    "removeComments": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "target": "es2017",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "typeRoots": ["node_modules/@types"],
+    "resolveJsonModule": true
+  },
+  "include": ["./**/*.ts"],
+  "exclude": [
+    "./**/node_modules/**/*",
+    "./**/.webpack/**/*",
+    "./**/_warmup/**/*",
+    "./**/.vscode/**/*",
+    "./**/__mocks__/**/*",
+    "./**/__tests__/**/*",
+    "./**/dist/**/*",
+    "./**/testSetup.ts"
+  ]
+}
