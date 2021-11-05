@@ -227,7 +227,7 @@ describe('.addedDiff', () => {
         ['hello', null],
         ['hello', undefined],
         [null, undefined],
-        //[undefined, null],
+        [undefined, null],
         [null, { a: 1 }],
         ['872983', { areaCode: '+44', number: '872983' }],
         [100, () => ({})],
