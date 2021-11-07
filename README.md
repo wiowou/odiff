@@ -27,22 +27,28 @@ My code consists of a single `diffWith` function that employs 4 predicates: `add
 
 Which begs the question: what's so special about `Date`? Why didn't the dod codebase handle it correctly to begin with? I believe it was because the authors were more interested in writing code to do the deep object diff problem correctly than they were in writing re-usable code. In utilizing Ramda, I tended to break up the problem in chunks that mapped to the methods I already had available in Ramda. I ended up never having to (or wanting to) consider the `Date` class separately from other objects because the authors of Ramda were interested in writing good, re-usable functions like R.equals and R.keys. `Date` had to be accounted for in a special manner in the dod codebase because a `Date` is an object that has no keys. And if you use that codebase to do a diff on objects that differ only in their private properties, you will end up with a questionable result. Now almost no users of `diff` would be interested in comparing two objects which have relevant private properties that are not `Date`s. But you never know for sure. And if another class like `Date` comes along, it will have to be dealt with in a special manner too.  
 
+Functional, declarative programming does seem to promote greater code re-use and maintainability when there a fixed set of *things* on which new *operations* are being added as is the situation when writing a deep object diff. It's not that the dod codebase was written in an OOP style, but that it was more imperative in style and had to get to the business of writing the diff as opposed to writing re-usable utility functions. The advantage that dod has is that it is much smaller and performs better. 
+
 ### Assumption: FP dramatically reduces the testing burden
 
 I did not find that I could reduce the number of tests in [deep-object-diff](https://github.com/mattphillips/deep-object-diff) (dod) in any meaningful way. Nor did I find the need to change the tests. I ended up with a greater appreciation for the value of test-driven development. I found the tests in dod to be written thoughtfully enough that, unchanged, they guided and shaped the code I wrote. I began utilizing the tests only after I had partially working code. If I had not done it that way, I think I would have risked losing sight of the larger idea behind the `diff` function and spent too much time focusing on passing the next test.
 
-
-
-### Assumption: FP code is more terse (less boilerplate)
+One aspect of testing that did not come up was mocking things like databases, and other dependencies. Here, I think FP should win out because it clearly favors pure functions. So what's to be done when the function has to manipulate a database? I think part of the answer is explicitly injecting database connections and the like as dependencies (parameters) as opposed to creating those connections within the function body. Another part of the answer is using currying to create functions on the fly that clearly store and use state passed to them as parameters. 
 
 ### Assumption: FP code is more intuitive to read
 
-### Assumption: FP code is more intuitive to write
+This is subjective, but yes. Despite my somewhat ambiguous choice in variable names - `keys` for example -, `R.union(R.keys(s), R.keys(p))` provides a pretty good clue in terms of what's being stored in the `keys` variable. 
+
+### Assumption: FP code is less intuitive to write
+
+Again, subjective, but yes. When writing code, I'm more inclined to think of imperative instructions. When I'm not writing code, I think declaratively most of the time! Declarative programming is not the same as FP though. There is a deeper mathematical structure to FP where writers benefit strongly from understanding concepts like algebraic structures, etc.
 
 ## General Impressions and Reflections
 
-## Inferences that could be made to other projects
+I had much more fun writing code than when I hemmed and hawed about UML diagrams and how best to choose to define a class or what Gang of Four design patterns could best be utilized for the problem at hand. When writing code at this level, (deep object diffs as opposed to a user interface), it's hard to justify an OOP approach. And when I write imperative code or impure functions, I'm not as confident about how re-usable the code is. FP got me thinking along the lines of code re-use, explicitly passing parameters in because I wanted to write pure functions. Ramda also provides the `R.curry`, `R.pipe` and `R.compose` functions to ultimately make it easier to follow good FP practice and write re-usable code. 
 
 ## Further areas for study
 
 - Test Driven Development
+- Algebraic structures, type classes, & more mathematical underpinnings
+- Dependency injection in FP
