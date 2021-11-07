@@ -1,22 +1,22 @@
 import * as R from 'ramda';
 
 const isUndefined = (x: any) => x === undefined && typeof x == 'undefined';
-export const isObject = (o: any) => o != null && typeof o === 'object';
+const isObject = (o: any) => o != null && typeof o === 'object';
 const hasKeys = R.pipe(R.keys, R.isEmpty, R.not);
 const propVal = R.curry((key: string, x: any) => R.view(R.lensProp(key), x));
 
 const EQUAL = {};
 //predicates
-const added = (primus: any, _: any) =>
+const added = (primus: any, _: any): boolean =>
   hasKeys(primus) || isUndefined(primus) || R.isEmpty(primus);
 
-const deleted = (primus: any, sec: any) => {
+const deleted = (primus: any, sec: any): boolean => {
   if (isObject(primus) && isObject(sec) && !hasKeys(primus) && !hasKeys(sec))
     return false;
   return isObject(primus) && (isObject(sec) || isUndefined(sec));
 };
 
-const updated = (primus: any, sec: any) =>
+const updated = (primus: any, sec: any): boolean =>
   !isUndefined(primus) && (!isUndefined(sec) || !isObject(sec));
 
 const all = (_: any, __: any) => true;
