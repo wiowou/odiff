@@ -10,6 +10,8 @@
 
 ### TL;DR
 
+I concluded that following good FP principles guides has a greater potential to result in code that can be used again. This in turn can ease maintainability and has the potential to result in better tests. However, writing declarative code, it is often more difficult to produce code that performs as well as imperative code could. I believe most projects would benefit more significantly (in terms of costs) from code reuse than from better performing code. FP is probably better suited for projects where new operations are being added to existing things.
+
 ## Sidebar
 
 Computer science professor [Norman Ramsey](https://www.cs.tufts.edu/~nr/)'s [perspective on FP and OOP](https://stackoverflow.com/questions/2078978/functional-programming-vs-object-oriented-programming/2079678#2079678).
