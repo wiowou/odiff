@@ -23,17 +23,17 @@ const all = (_: any, __: any) => true;
 
 export const diffWith = R.curry(
   (predicate: (a: any, b: any) => boolean, primus: any, sec: any) => {
-    function _diff([p, s]: [any, any]) {
+    function _diff(p: any, s: any) {
       if (!predicate(p, s) || R.equals(p, s)) return EQUAL;
       if (!isObject(p) || isUndefined(s)) return s;
       const keys = R.union(R.keys(s), R.keys(p));
       if (!keys.length) return s;
       return keys.reduce((acc: object, key: string) => {
-        const result = _diff([propVal(key, p), propVal(key, s)]);
+        const result = _diff(propVal(key, p), propVal(key, s));
         return result === EQUAL ? acc : { ...acc, [key]: result };
       }, {});
     }
-    return _diff([primus, sec]);
+    return _diff(primus, sec);
   }
 );
 
