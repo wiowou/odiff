@@ -39,7 +39,7 @@ One aspect of testing that did not come up was mocking dependencies like databas
 
 ### Assumption: FP code is more intuitive to read
 
-This is subjective, but yes. Despite my somewhat ambiguous choice in variable names - `keys` for example -, `R.union(R.keys(s), R.keys(p))` provides a pretty good clue in terms of what's being stored in the `keys` variable. 
+This is subjective, but yes. Despite my somewhat ambiguous choice in variable names - `keys` for example -, `R.union(R.keys(p), R.keys(s))` provides a pretty good clue in terms of what's being stored in the `keys` variable. 
 
 ### Assumption: FP code is less intuitive to write
 
