@@ -19,7 +19,7 @@ const deleted = (primus: any, sec: any): boolean => {
 const updated = (primus: any, sec: any): boolean =>
   !isUndefined(primus) && (!isUndefined(sec) || !isObject(sec));
 
-const all = (_: any, __: any) => true;
+const all = (_: any, __: any): boolean => true;
 
 export const diffWith = R.curry(
   (predicate: (a: any, b: any) => boolean, primus: any, sec: any) => {
