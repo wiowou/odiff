@@ -26,7 +26,7 @@ export const diffWith = R.curry(
     function _diff(p: any, s: any) {
       if (!predicate(p, s) || R.equals(p, s)) return EQUAL;
       if (!isObject(p) || isUndefined(s)) return s;
-      const keys = R.union(R.keys(s), R.keys(p));
+      const keys = R.union(R.keys(p), R.keys(s));
       if (!keys.length) return s;
       return keys.reduce((acc: object, key: string) => {
         const result = _diff(propVal(key, p), propVal(key, s));
